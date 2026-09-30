@@ -1,21 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DatabaseTask.Core.Domain
 {
     public class Shift
     {
-        [Key]
-        public int shift_id { get; set; }
-
-        // FK -> Guards
-        public int guards_id { get; set; }
-
-        [ForeignKey(nameof(guards_id))]
-        public Guards guards { get; set; } = null!;
-
-        public int start_time { get; set; }
-        public int finish_time { get; set; }
-        public DateTime date { get; set; }
+        public int Id { get; set; }
+        public Guards Guards { get; set; }
+        public int Start_time { get; set; }
+        public int Finish_time { get; set; }
+        public DateTime Date { get; set; }
     }
 }

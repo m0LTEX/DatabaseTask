@@ -1,17 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DatabaseTask.Core.Domain
 {
     public class Visitors
     {
-        [Key]
-        public int visitors_id { get; set; }
-
-        public string name { get; set; } = null!;
-        public int personal_number { get; set; }
-        public string telephone_number { get; set; } = null!;
-
+        public int Id { get; set; }
         [MaxLength(50)]
-        public string relation_to_prisoner { get; set; } = null!;
+        public string Name { get; set; }
+        public int Personal_Number { get; set; }
+        public int Telphone_Number { get; set; }
+        public string Relation_To_The_Prisoner { get; set; }
     }
 }

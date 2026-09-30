@@ -1,21 +1,25 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DatabaseTask.Core.Domain
 {
     public class Prison
     {
-        [Key]
-        public int prison_id { get; set; }
+        public int Id { get; set; }
 
         [MaxLength(50)]
-        public string name { get; set; } = null!;
-
+        public string Name { get; set; }
         [MaxLength(50)]
-        public string location { get; set; } = null!;
-        public int maximum_capacity { get; set; }
+        public string Location { get; set; }
+        public int Maxiumum_Capacity { get; set; }
 
-        public ICollection<Guards> guards { get; set; } = new List<Guards>();
-        public ICollection<Building> buildings { get; set; } = new List<Building>();
-        public ICollection<Block> blocks { get; set; } = new List<Block>();
+        public ICollection<Guards> Guards { get; set; } = new List<Guards>();
+        public ICollection<Block> Block { get; set; } = new List<Block>();
+        public ICollection<Building> Building { get; set; } = new List<Building>();
+
     }
 }

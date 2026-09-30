@@ -1,18 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DatabaseTask.Core.Domain
 {
     public class Punishment
     {
-        [Key]
-        public int punishment_id { get; set; }
-
-        public DateTime start_date { get; set; }
-        public DateTime end_date { get; set; }
+        public int Id { get; set; }
+        public DateTime Start_Date { get; set; }
+        public DateTime End_Date { get; set; }
 
         [MaxLength(60)]
-        public string punishment_type { get; set; } = null!;
-
-        public ICollection<Prisoners> prisoners { get; set; } = new List<Prisoners>();
+        public string Punishment_Type { get; set; }
     }
 }

@@ -1,19 +1,19 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DatabaseTask.Core.Domain
 {
     public class Crime
     {
-        [Key]
-        public int crime_id { get; set; }
-
+        public int Id { get; set; }
         [MaxLength(100)]
-        public string name { get; set; } = null!;
-
+        public string Name { get; set; }
         [MaxLength(200)]
-        public string description { get; set; } = null!;
-        public int difficulty_level { get; set; }
-
-        public ICollection<Prisoners> prisoners { get; set; } = new List<Prisoners>();
+        public string Description { get; set; }
+        public int Difficulty_Level { get; set; }
     }
 }

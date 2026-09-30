@@ -1,17 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DatabaseTask.Core.Domain
 {
     public class Building
     {
-        [Key]
-        public int building_id { get; set; }
+        public int Id { get; set; }
 
-        // FK -> Prison
-        public int prison_id { get; set; }
-
-        [ForeignKey(nameof(prison_id))]
-        public Prison prison { get; set; } = null!;
+        public Prison Prison { get; set; }
     }
 }

@@ -1,25 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DatabaseTask.Core.Domain
 {
     public class Block
     {
-        [Key]
-        public int block_id { get; set; }
+        public int Id { get; set; }
+        public Prison Prison { get; set; }
+        public int Number { get; set; }
 
-        // FK -> Prison
-        public int prison_id { get; set; }
+        [MaxLength(60)]
+        public string Name { get; set; }
 
-        [ForeignKey(nameof(prison_id))]
-        public Prison prison { get; set; } = null!;
-
-        public int number { get; set; }
-
-        [MaxLength(50)]
-        public string name { get; set; } = null!;
-        public int security_level { get; set; }
-
-        public ICollection<Chamber> chambers { get; set; } = new List<Chamber>();
+        public int Security_Level { get; set; }
     }
 }
