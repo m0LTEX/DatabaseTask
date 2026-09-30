@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DatabaseTask.Data.Migrations
 {
     [DbContext(typeof(DatabaseTaskDbContext))]
-    [Migration("20260930115308_init")]
+    [Migration("20260930122736_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -27,16 +27,16 @@ namespace DatabaseTask.Data.Migrations
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Block", b =>
                 {
-                    b.Property<int>("Block_id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Block_id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
@@ -44,10 +44,10 @@ namespace DatabaseTask.Data.Migrations
                     b.Property<int>("PrisonId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Security_level")
+                    b.Property<int>("Security_Level")
                         .HasColumnType("int");
 
-                    b.HasKey("Block_id");
+                    b.HasKey("Id");
 
                     b.HasIndex("PrisonId");
 
@@ -56,29 +56,29 @@ namespace DatabaseTask.Data.Migrations
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Building", b =>
                 {
-                    b.Property<int>("BuildingId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BuildingId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Prison_id")
+                    b.Property<int>("PrisonId")
                         .HasColumnType("int");
 
-                    b.HasKey("BuildingId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("Prison_id");
+                    b.HasIndex("PrisonId");
 
                     b.ToTable("Building");
                 });
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Chamber", b =>
                 {
-                    b.Property<int>("chamberId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("chamberId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("BlockId")
                         .HasColumnType("int");
@@ -86,13 +86,13 @@ namespace DatabaseTask.Data.Migrations
                     b.Property<int>("Floor")
                         .HasColumnType("int");
 
-                    b.Property<int>("Maximum_capacity")
+                    b.Property<int>("Maxiumum_Capacity")
                         .HasColumnType("int");
 
                     b.Property<int>("Number")
                         .HasColumnType("int");
 
-                    b.HasKey("chamberId");
+                    b.HasKey("Id");
 
                     b.HasIndex("BlockId");
 
@@ -101,18 +101,18 @@ namespace DatabaseTask.Data.Migrations
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Crime", b =>
                 {
-                    b.Property<int>("CrimeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CrimeId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("Difficulty_level")
+                    b.Property<int>("Difficulty_Level")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -120,23 +120,28 @@ namespace DatabaseTask.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.HasKey("CrimeId");
+                    b.HasKey("Id");
 
                     b.ToTable("Crime");
                 });
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Guards", b =>
                 {
-                    b.Property<int>("GuardsId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GuardsId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("First_Name")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("Job")
+                        .IsRequired()
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
                     b.Property<string>("Last_Name")
                         .IsRequired()
@@ -149,12 +154,7 @@ namespace DatabaseTask.Data.Migrations
                     b.Property<int>("Worker_Number")
                         .HasColumnType("int");
 
-                    b.Property<string>("job")
-                        .IsRequired()
-                        .HasMaxLength(70)
-                        .HasColumnType("nvarchar(70)");
-
-                    b.HasKey("GuardsId");
+                    b.HasKey("Id");
 
                     b.HasIndex("PrisonId");
 
@@ -163,18 +163,18 @@ namespace DatabaseTask.Data.Migrations
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Prison", b =>
                 {
-                    b.Property<int>("PrisonId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrisonId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("Maximum_capacity")
+                    b.Property<int>("Maxiumum_Capacity")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -182,18 +182,18 @@ namespace DatabaseTask.Data.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("PrisonId");
+                    b.HasKey("Id");
 
-                    b.ToTable("Prisons");
+                    b.ToTable("Prison");
                 });
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Prisoners", b =>
                 {
-                    b.Property<int>("PrisonerId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PrisonerId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Arrival_Date")
                         .HasColumnType("datetime2");
@@ -203,6 +203,9 @@ namespace DatabaseTask.Data.Migrations
 
                     b.Property<int>("CrimeId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("DOB")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("First_Name")
                         .IsRequired()
@@ -223,10 +226,7 @@ namespace DatabaseTask.Data.Migrations
                     b.Property<int>("PunishmentId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("dob")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("PrisonerId");
+                    b.HasKey("Id");
 
                     b.HasIndex("ChamberId");
 
@@ -239,11 +239,11 @@ namespace DatabaseTask.Data.Migrations
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Punishment", b =>
                 {
-                    b.Property<int>("PunishmentId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PunishmentId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("End_Date")
                         .HasColumnType("datetime2");
@@ -256,32 +256,32 @@ namespace DatabaseTask.Data.Migrations
                     b.Property<DateTime>("Start_Date")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("PunishmentId");
+                    b.HasKey("Id");
 
                     b.ToTable("Punishment");
                 });
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Shift", b =>
                 {
-                    b.Property<int>("ShiftId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ShiftId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Finish_Time")
+                    b.Property<int>("Finish_time")
                         .HasColumnType("int");
 
                     b.Property<int>("GuardsId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Start_Time")
+                    b.Property<int>("Start_time")
                         .HasColumnType("int");
 
-                    b.HasKey("ShiftId");
+                    b.HasKey("Id");
 
                     b.HasIndex("GuardsId");
 
@@ -290,11 +290,11 @@ namespace DatabaseTask.Data.Migrations
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Visit", b =>
                 {
-                    b.Property<int>("VisitId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VisitId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -302,10 +302,7 @@ namespace DatabaseTask.Data.Migrations
                     b.Property<int>("Finish_Time")
                         .HasColumnType("int");
 
-                    b.Property<int>("GuardsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PrisonerId")
+                    b.Property<int>("PrisonersId")
                         .HasColumnType("int");
 
                     b.Property<int>("Start_Time")
@@ -316,40 +313,42 @@ namespace DatabaseTask.Data.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
 
-                    b.HasKey("VisitId");
+                    b.Property<int>("VisitorsId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("GuardsId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("PrisonerId");
+                    b.HasIndex("PrisonersId");
+
+                    b.HasIndex("VisitorsId");
 
                     b.ToTable("Visit");
                 });
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Visitors", b =>
                 {
-                    b.Property<int>("VisitorsId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("VisitorsId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Personal_Number")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Relation_To_Prisoner")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("Telephone_Number")
+                    b.Property<int>("Personal_Number")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Relation_To_The_Prisoner")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("VisitorsId");
+                    b.Property<int>("Telphone_Number")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.ToTable("Visitors");
                 });
@@ -357,7 +356,7 @@ namespace DatabaseTask.Data.Migrations
             modelBuilder.Entity("DatabaseTask.Core.Domain.Block", b =>
                 {
                     b.HasOne("DatabaseTask.Core.Domain.Prison", "Prison")
-                        .WithMany("Blocks")
+                        .WithMany("Block")
                         .HasForeignKey("PrisonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -368,8 +367,8 @@ namespace DatabaseTask.Data.Migrations
             modelBuilder.Entity("DatabaseTask.Core.Domain.Building", b =>
                 {
                     b.HasOne("DatabaseTask.Core.Domain.Prison", "Prison")
-                        .WithMany("Buildings")
-                        .HasForeignKey("Prison_id")
+                        .WithMany("Building")
+                        .HasForeignKey("PrisonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -379,7 +378,7 @@ namespace DatabaseTask.Data.Migrations
             modelBuilder.Entity("DatabaseTask.Core.Domain.Chamber", b =>
                 {
                     b.HasOne("DatabaseTask.Core.Domain.Block", "Block")
-                        .WithMany("Chambers")
+                        .WithMany()
                         .HasForeignKey("BlockId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -401,19 +400,19 @@ namespace DatabaseTask.Data.Migrations
             modelBuilder.Entity("DatabaseTask.Core.Domain.Prisoners", b =>
                 {
                     b.HasOne("DatabaseTask.Core.Domain.Chamber", "Chamber")
-                        .WithMany("Prisoners")
+                        .WithMany()
                         .HasForeignKey("ChamberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DatabaseTask.Core.Domain.Crime", "Crime")
-                        .WithMany("Prisoners")
+                        .WithMany()
                         .HasForeignKey("CrimeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DatabaseTask.Core.Domain.Punishment", "Punishment")
-                        .WithMany("Prisoners")
+                        .WithMany()
                         .HasForeignKey("PunishmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -428,7 +427,7 @@ namespace DatabaseTask.Data.Migrations
             modelBuilder.Entity("DatabaseTask.Core.Domain.Shift", b =>
                 {
                     b.HasOne("DatabaseTask.Core.Domain.Guards", "Guards")
-                        .WithMany("Shifts")
+                        .WithMany()
                         .HasForeignKey("GuardsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -438,62 +437,30 @@ namespace DatabaseTask.Data.Migrations
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Visit", b =>
                 {
-                    b.HasOne("DatabaseTask.Core.Domain.Guards", "Guards")
-                        .WithMany("Visits")
-                        .HasForeignKey("GuardsId")
+                    b.HasOne("DatabaseTask.Core.Domain.Prisoners", "Prisoners")
+                        .WithMany()
+                        .HasForeignKey("PrisonersId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DatabaseTask.Core.Domain.Prisoners", "Prisoner")
-                        .WithMany("Visits")
-                        .HasForeignKey("PrisonerId")
+                    b.HasOne("DatabaseTask.Core.Domain.Visitors", "Visitors")
+                        .WithMany()
+                        .HasForeignKey("VisitorsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Guards");
-
-                    b.Navigation("Prisoner");
-                });
-
-            modelBuilder.Entity("DatabaseTask.Core.Domain.Block", b =>
-                {
-                    b.Navigation("Chambers");
-                });
-
-            modelBuilder.Entity("DatabaseTask.Core.Domain.Chamber", b =>
-                {
                     b.Navigation("Prisoners");
-                });
 
-            modelBuilder.Entity("DatabaseTask.Core.Domain.Crime", b =>
-                {
-                    b.Navigation("Prisoners");
-                });
-
-            modelBuilder.Entity("DatabaseTask.Core.Domain.Guards", b =>
-                {
-                    b.Navigation("Shifts");
-
-                    b.Navigation("Visits");
+                    b.Navigation("Visitors");
                 });
 
             modelBuilder.Entity("DatabaseTask.Core.Domain.Prison", b =>
                 {
-                    b.Navigation("Blocks");
+                    b.Navigation("Block");
 
-                    b.Navigation("Buildings");
+                    b.Navigation("Building");
 
                     b.Navigation("Guards");
-                });
-
-            modelBuilder.Entity("DatabaseTask.Core.Domain.Prisoners", b =>
-                {
-                    b.Navigation("Visits");
-                });
-
-            modelBuilder.Entity("DatabaseTask.Core.Domain.Punishment", b =>
-                {
-                    b.Navigation("Prisoners");
                 });
 #pragma warning restore 612, 618
         }
