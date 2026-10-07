@@ -22,3 +22,6 @@ namespace DatabaseTask.Core.Domain
         public ICollection<Guests> Guests { get; set; } = new List<Guests>();
     }
 }
+
+
+
